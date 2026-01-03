@@ -1,2 +1,2 @@
 # Rock Paper Scissor
-![Rock Paper Scissor](https://user-images.githubusercontent.com/xxxxxx/xxxxxx.png)
+![Rock Paper Scissor](https://github.com/Dheer08/Python-Projects/blob/main/Rock%20Paper%20Scissors/Screenshots/1.png)
