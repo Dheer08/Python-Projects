@@ -5,3 +5,4 @@ Learn Different Concepts of software industry  using Python Projects
 3. Student Website
 4. Clone Splitwise 
 5. End-to-End ML Project
+6. bot
