@@ -6,3 +6,4 @@ Learn Different Concepts of software industry  using Python Projects
 4. Clone Splitwise 
 5. End-to-End ML Project
 6. bot
+7. Store Data Dashboard
