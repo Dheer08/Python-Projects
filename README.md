@@ -9,3 +9,4 @@ Learn Different Concepts of software industry  using Python Projects
 7. sales Store Data Dashboard
 8. simple .Net application Backend
 9. A Image Detection Project
+10. A Simple Databricks Projetct
