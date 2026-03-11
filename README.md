@@ -10,3 +10,4 @@ Learn Different Concepts of software industry  using Python Projects
 8. simple .Net application Backend
 9. A Image Detection Project
 10. A Simple Databricks Projetct
+11. A Person Detection in a Video
