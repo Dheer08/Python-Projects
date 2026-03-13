@@ -12,3 +12,4 @@ Learn Different Concepts of software industry  using Python Projects
 10. A Simple Databricks Projetct
 11. A Person Detection in a Video
 12. A Simple game using Pygame module
+13. A Simple Cloud Deployment of a Project
