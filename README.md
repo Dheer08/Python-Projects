@@ -13,3 +13,4 @@ Learn Different Concepts of software industry  using Python Projects
 11. A Person Detection in a Video
 12. A Simple game using Pygame module
 13. A Simple Cloud Deployment of a Project
+14. A Novel or Movie web scrapper
