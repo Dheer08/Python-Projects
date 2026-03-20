@@ -15,4 +15,5 @@ Learn Different Concepts of software industry  using Python Projects
 13. A Simple Cloud Deployment of a Project
 14. A Novel or Movie web scrapper
 15. Course project
-16. sql Project
+16. sql Project 
+17. Linq Project
