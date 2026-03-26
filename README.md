@@ -19,3 +19,4 @@ Learn Different Concepts of software industry  using Python Projects
 17. Linq Project
 18. End-End LLM Project
 19. End-End NLP Project
+20. End-End CV Project
