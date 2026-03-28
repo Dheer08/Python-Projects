@@ -5,7 +5,7 @@ Learn Different Concepts of software industry  using Python Projects
 3. Student Website
 4. Clone Splitwise 
 5. End-to-End ML Project
-6. bot
+6. simple bot
 7. sales Store Data Dashboard
 8. simple .Net application Backend
 9. A Image Detection Project
@@ -20,3 +20,4 @@ Learn Different Concepts of software industry  using Python Projects
 18. End-End LLM Project
 19. End-End NLP Project
 20. End-End CV Project
+21. devops project
