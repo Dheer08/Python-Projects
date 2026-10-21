@@ -1,0 +1,17 @@
+[project]
+name = "learn-langgraph"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "ipykernel>=7.3.0",
+    "langchain>=1.4.6",
+    "langgraph>=1.2.16",
+    "langsmith>=0.14.11",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.3.0",
+]
