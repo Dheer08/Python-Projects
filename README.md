@@ -2,7 +2,7 @@
 
 # 🐍 Python Projects
 
-**A hands-on portfolio of Python work — from Generative AI agents with LangChain & LangGraph to machine learning, data analysis and command-line tools.**
+**A hands-on portfolio of Python work — RAG pipelines, LLM agents with LangChain, LangGraph and MCP, machine learning, data analysis and command-line tools.**
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![LangChain](https://img.shields.io/badge/LangChain-v1-1C3C3C?logo=langchain&logoColor=white)
@@ -10,6 +10,9 @@
 ![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4.1-412991?logo=openai&logoColor=white)
 ![Gemini](https://img.shields.io/badge/Google-Gemini-4285F4?logo=google&logoColor=white)
 ![Groq](https://img.shields.io/badge/Groq-LLM-F55036)
+![MCP](https://img.shields.io/badge/MCP-Model_Context_Protocol-000000)
+![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector_DB-FF6446)
+![Hugging Face](https://img.shields.io/badge/Sentence--Transformers-FFD21E?logo=huggingface&logoColor=black)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?logo=scikitlearn&logoColor=white)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?logo=tensorflow&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?logo=jupyter&logoColor=white)
@@ -23,13 +26,42 @@
 
 I'm **Rakshith Dheer Reddy Kunduru**, an MSc Data Analytics graduate (Dublin Business School) with three years' experience as a Software Engineer building C# .NET MVC APIs and T-SQL back ends. This repository is where I build and document my work in **Python, AI and data** — each folder is a self-contained project or learning track.
 
-**Focus areas:** Generative AI & LLM agents · Machine Learning · Deep Learning · Data Analysis · Python engineering
+**Focus areas:** Retrieval-augmented generation (RAG) · LLM agents & MCP · Machine Learning · Deep Learning · Data Analysis · Python engineering
 
 ---
 
 ## ⭐ Featured Work
 
-### 1. 🤖 LangChain v1 — Building LLM Applications
+### 1. 📚 RAG Pipeline — Ask Questions About Your Own PDFs
+📁 [`Learn RAG`](Learn%20RAG)
+
+An end-to-end **retrieval-augmented generation** pipeline built from the components up, rather than a one-line framework call. It indexes a collection of technical PDFs (study guides on embeddings, Transformers, RAG and object detection) and answers questions about them with an LLM, returning the sources it used.
+
+```mermaid
+flowchart LR
+    A[PDFs] --> B[Load<br/>PyPDF / PyMuPDF]
+    B --> C[Chunk<br/>1,000 chars, 200 overlap]
+    C --> D[Embed<br/>all-MiniLM-L6-v2]
+    D --> E[(ChromaDB<br/>persistent)]
+    Q[Question] --> R[Retrieve top-k<br/>+ score threshold]
+    E --> R
+    R --> G[LLM answer<br/>with sources]
+```
+
+| Notebook | What it covers |
+|----------|----------------|
+| [01 – Document components](Learn%20RAG/Notebook/01%20-%20Langchain%20Document%20Components.ipynb) | LangChain `Document` objects and metadata; `TextLoader`, `DirectoryLoader`, `PyPDFLoader` and `PyMuPDFLoader` |
+| [02 – RAG pipeline](Learn%20RAG/Notebook/02%20-%20RAG%20Pipeline.ipynb) | Batch PDF ingestion, recursive chunking, an `EmbeddingManager` (Sentence Transformers), a `VectorStore` (ChromaDB), a `RAGRetriever`, and simple and advanced RAG functions |
+
+**Highlights**
+- Ingests **5 PDFs (92 pages) into 221 chunks** and embeds them as 384-dimensional vectors in a persistent ChromaDB collection.
+- Retrieval with a **similarity-score threshold**, so weak matches are dropped instead of polluting the prompt.
+- `rag_advanced()` returns the **answer, the retrieved context, the source documents and a confidence score**, so every answer can be checked.
+- Clean, reusable classes (`EmbeddingManager`, `VectorStore`, `RAGRetriever`), ready to move into the `src/` package.
+
+---
+
+### 2. 🤖 LangChain v1 — Building LLM Applications
 📁 [`Learn Langchain/Updated Langchain`](Learn%20Langchain/Updated%20Langchain)
 
 A six-part, notebook-based series working through the modern **LangChain v1** API with real model calls across three providers.
@@ -50,14 +82,15 @@ A six-part, notebook-based series working through the modern **LangChain v1** AP
 
 ---
 
-### 2. 🕸️ LangGraph — Stateful Agent Workflows
+### 3. 🕸️ LangGraph — Stateful Agent Workflows
 📁 [`Learn Langgraph`](Learn%20Langgraph)
 
 Building agents as graphs of **nodes, edges and shared state** using the LangGraph Graph API.
 
-- **Basic chatbot** — a `StateGraph` with an `add_messages` reducer, compiled, visualised as a Mermaid diagram, and run with both `invoke` and `stream`.
-- **Tool-calling chatbot** — combines live web search (**Tavily**) with a custom Python function, routed through `ToolNode` and `tools_condition`.
-- **Designed next:** a *YouTube-to-blog* pipeline — transcript → title → full blog post — as a multi-node graph.
+| Notebook | What it covers |
+|----------|----------------|
+| [01 – Chatbots and agents](Learn%20Langgraph/01%20-%20Basic%20Chatbot/1.1%20-%20Basic%20Chatbot.ipynb) | A `StateGraph` chatbot with an `add_messages` reducer; tool calling with live web search (**Tavily**) through `ToolNode` and `tools_condition`; a **ReAct** agent loop; **memory** with `MemorySaver` checkpointing per `thread_id`; **streaming** with `stream` (`values` and `updates` modes) and `astream_events` |
+| [02 – Human in the loop](Learn%20Langgraph/02%20-%20Human%20in%20the%20Loop.ipynb) | An agent with a `human_assistance` tool that **interrupts** the graph, waits for a human reply, then resumes with it |
 
 ```mermaid
 flowchart LR
@@ -69,7 +102,25 @@ flowchart LR
 
 ---
 
-### 3. 🎮 Rock Paper Scissors — CLI Game
+### 4. 🔌 MCP — Connecting Agents to Tool Servers
+📁 [`Learn MCP /MCP Demo Langchain`](Learn%20MCP%20/MCP%20Demo%20Langchain)
+
+The **Model Context Protocol (MCP)** is an open standard for plugging tools and data sources into AI applications. This demo builds two MCP servers with **FastMCP** and connects a LangChain agent to both at once:
+
+- **Math server** ([`mathserver.py`](Learn%20MCP%20/MCP%20Demo%20Langchain/mathserver.py)): add, subtract, multiply and divide tools over the **stdio** transport, launched by the client as a subprocess.
+- **Weather server** ([`weather.py`](Learn%20MCP%20/MCP%20Demo%20Langchain/weather.py)): a weather tool over **streamable HTTP**, running as its own service.
+- **Client** ([`client.py`](Learn%20MCP%20/MCP%20Demo%20Langchain/client.py)): `MultiServerMCPClient` loads tools from both servers and gives them to a `create_agent` agent, which picks the right server for "What is (3+5)×2?" and "What's the weather in New York?".
+
+```mermaid
+flowchart LR
+    U[Question] --> A[LangChain agent<br/>GPT-4o-mini]
+    A <-- stdio --> M[Math MCP server]
+    A <-- HTTP --> W[Weather MCP server]
+```
+
+---
+
+### 5. 🎮 Rock Paper Scissors — CLI Game
 📁 [`Terminal Line /Rock Paper Scissors`](Terminal%20Line%20/Rock%20Paper%20Scissors)
 
 A terminal game with **three modes**: *Normal*, *No Draw* (draws are replayed) and *Impossible* (the computer always counters your move). The winner is decided with a compact modular-arithmetic rule — `(user - computer) % 3 == 1` — and all input is validated.
@@ -118,7 +169,8 @@ These tracks are set up and being built out:
 | Category | Tools |
 |----------|-------|
 | **Language** | Python 3.10+ |
-| **Generative AI** | LangChain v1, LangGraph, LangSmith, OpenAI, Google Gemini, Groq, Tavily |
+| **Generative AI** | LangChain v1, LangGraph, LangSmith, MCP (FastMCP, langchain-mcp-adapters), OpenAI, Google Gemini, Groq, Tavily |
+| **RAG** | Sentence Transformers, ChromaDB, FAISS, PyPDF, PyMuPDF |
 | **Data & ML** | NumPy, pandas, scikit-learn, Matplotlib, Seaborn |
 | **Deep Learning** | TensorFlow |
 | **Validation** | Pydantic, `typing` / `TypedDict` |
@@ -140,11 +192,18 @@ cd "Terminal Line /Rock Paper Scissors"
 python main.py
 ```
 
-**Run the LangChain / LangGraph notebooks** (managed with `uv`)
+**Run the LangChain, LangGraph or RAG notebooks** (managed with `uv`)
 ```bash
-cd "Learn Langgraph"          # or "Learn Langchain"
+cd "Learn RAG"                # or "Learn Langchain", "Learn Langgraph"
 uv sync                       # creates .venv and installs dependencies
 # or: pip install -r requirements.txt
+```
+
+**Run the MCP demo** (two terminals)
+```bash
+cd "Learn MCP /MCP Demo Langchain" && uv sync
+uv run weather.py             # terminal 1: weather server on http://localhost:8000/mcp
+uv run client.py              # terminal 2: starts the math server itself and runs the agent
 ```
 
 Create a `.env` file in that folder with the keys the notebooks use:
@@ -163,8 +222,10 @@ Then open the notebooks in Jupyter or VS Code and select the project's `.venv` k
 
 ```
 Python-Projects/
+├── Learn RAG/                # RAG pipeline: loaders, chunking, embeddings, ChromaDB
 ├── Learn Langchain/          # LangChain v1 series (6 notebooks)
-├── Learn Langgraph/          # LangGraph agent workflows
+├── Learn Langgraph/          # LangGraph agents: tools, ReAct, memory, streaming, HITL
+├── Learn MCP /               # MCP servers (stdio + HTTP) with a LangChain agent
 ├── Terminal Line /           # CLI apps: games and utilities
 ├── ML Algorithms/            # Classical machine learning
 ├── Deep Learning/            # Neural networks, CV, NLP, RAG
