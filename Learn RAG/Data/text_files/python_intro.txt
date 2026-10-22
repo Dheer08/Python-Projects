@@ -1,0 +1,7 @@
+
+        This is the content of sample file 1. Learn Python."
+        Python is a high-level, interpreted programming language known for its simplicity and readability. It supports multiple
+        programming paradigms, including procedural, object-oriented, and functional programming. Python is widely used in
+        web development, data analysis, artificial intelligence, scientific computing, and more. Its extensive standard
+        library and active community contribute to its popularity, making it a versatile choice for developers of all skill levels.
+        

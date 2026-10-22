@@ -1,0 +1,8 @@
+
+    This is the content of sample file 1. Learn RAG."
+    RAG stands for Retrieval-Augmented Generation, a technique that combines retrieval of relevant documents with 
+    generative models to produce more accurate and contextually relevant responses.RAG is particularly useful in scenarios 
+    where the model needs to answer questions or generate text based on specific information that may not be present in its 
+    training data. RAG models can retrieve relevant documents from a large corpus and use that information to
+     generate more informed and accurate responses.
+    

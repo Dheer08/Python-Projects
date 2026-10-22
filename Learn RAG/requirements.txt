@@ -1,0 +1,17 @@
+langchain
+langchain-core
+langchain-community
+langchain
+langgraph
+langsmith
+python-dotenv
+langchain-openai
+langchain-groq
+langchain-google-genai
+pymupdf
+ipykernel
+pathlib
+PyPDF
+sentence-transformers
+faiss-cpu
+chromadb

@@ -1,0 +1,29 @@
+[project]
+name = "learn-rag"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "chromadb>=1.5.9",
+    "faiss-cpu>=1.15.1",
+    "ipykernel>=7.3.0",
+    "langchain>=1.4.7",
+    "langchain-community>=0.4.2",
+    "langchain-core>=1.6.13",
+    "langchain-google-genai>=4.4.2",
+    "langchain-groq>=1.1.3",
+    "langchain-openai>=1.7.2",
+    "langgraph>=1.2.16",
+    "langsmith>=0.14.12",
+    "pathlib>=1.0.1",
+    "pymupdf>=1.28.2",
+    "pypdf>=6.21.2",
+    "python-dotenv>=1.2.4",
+    "sentence-transformers>=6.2.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.3.0",
+]
